@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ripley.legal.entities\ripley.legal.entities.csproj" />
-    <ProjectReference Include="..\ripley.legal.repository\ripley.legal.repository.csproj" />
   </ItemGroup>
 
 </Project>
