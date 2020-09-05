@@ -8,10 +8,6 @@
         <div class="form-group col-md-4">
             <label for="textLawFirm">Estudio Asignado</label>
             <select class="custom-select mr-sm-2" id="selectLawFirm">
-                <option value="01">Benites</option>
-                <option value="02">Miranda</option>
-                <option value="03">Ramirez</option>
-                <option value="04">Sacovertiz</option>
             </select>
         </div>
         <div class="form-group col-md-4">
@@ -58,4 +54,25 @@
     </div>
     <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
+<!-- Scripts -->
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/site.js"></script>
+<script type="text/javascript">
+    $(() => {
 
+        // Law Firm
+        $.ajax({
+            type: 'GET',
+            url: 'Claims/GetLawFirms',
+            success(array) {
+                let options = '';
+                for (let elem of array) {
+                    options += printOptionInSelect(elem.id, elem.description);
+                }
+                //console.log(array);
+                $('#selectLawFirm').html(options);
+            }
+        });
+
+    })
+</script>
