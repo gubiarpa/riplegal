@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/css/bootstrap.css",
     "inputFile": "wwwroot/lib/bootstrap/bootstrap.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/datatables.css",
+    "inputFile": "wwwroot/lib/datatables/datatables.scss"
   }
 ]
