@@ -22,6 +22,11 @@ namespace ripley.legal.web.Controllers
             return View();
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         #region AjaxRequests
         public async Task<IActionResult> GetLawFirms()
         {
