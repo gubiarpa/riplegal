@@ -54,7 +54,7 @@ namespace ripley.legal.web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Claims}/{action=Index}/{id?}");
             });
         }
     }

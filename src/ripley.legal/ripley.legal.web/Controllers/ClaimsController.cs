@@ -28,6 +28,12 @@ namespace ripley.legal.web.Controllers
             var lawFirms = await _context.LawFirms.ToListAsync();
             return new JsonResult(lawFirms);
         }
+
+        public async Task<IActionResult> GetCities()
+        {
+            var cities = await _context.Cities.ToListAsync();
+            return new JsonResult(cities);
+        }
         #endregion
     }
 }

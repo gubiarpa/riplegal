@@ -10,6 +10,7 @@ namespace ripley.legal.repository
     public class DbContextApp : DbContext
     {
         public DbSet<LawFirm> LawFirms { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         public DbContextApp(DbContextOptions<DbContextApp> options) : base(options)
         {
@@ -19,6 +20,7 @@ namespace ripley.legal.repository
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new LawFirmMap());
+            modelBuilder.ApplyConfiguration(new CityMap());
         }
     }
 }
