@@ -197,16 +197,23 @@ textarea.form-control {
 // Special replacement for our grid system's `.row` for tighter form layouts.
 
 .form-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -$form-grid-gutter-width / 2;
-  margin-left: -$form-grid-gutter-width / 2;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -$form-grid-gutter-width / 2;
+    margin-left: -$form-grid-gutter-width / 2;
 
-  > .col,
-  > [class*="col-"] {
-    padding-right: $form-grid-gutter-width / 2;
-    padding-left: $form-grid-gutter-width / 2;
-  }
+    > .col,
+    > [class*="col-"] {
+        padding-right: $form-grid-gutter-width / 2;
+        padding-left: $form-grid-gutter-width / 2;
+    }
+
+    label {
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
+        color: $gray-ripley;
+        margin-left: 6px!important;
+    }
 }
 
 

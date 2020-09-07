@@ -3,97 +3,124 @@
     ViewData["Title"] = "Index";
 }
 
-<form>
+<div>
     <div class="form-row">
-        <!-- Law Firm -->
-        <div class="form-group col-md-4">
-            <label for="textLawFirm">Estudio Asignado</label>
-            <select class="custom-select mr-sm-2" id="selectLawFirm"></select>
+        <!-- Estudio de Abogados (Law Firm) -->
+        <div class="form-group col-md-3">
+            <label for="selectLawFirm">Estudio Asignado</label>
+            <select class="custom-select" id="selectLawFirm"></select>
         </div>
-        <!--  -->
+        <!-- Número de Expediente (File Number) -->
         <div class="form-group col-md-4">
-            <label for="textFileNumber">Número de Expediente</label>
-            <input type="text" class="form-control text-uppercase" id="textFileNumber">
-        </div>
-        <div class="form-group col-md-4">
-            <label for="textNotifyDate">Número de Expediente</label>
-            <input type="date" class="form-control" id="textNotifyDate">
+            <label for="inputFileNumber">Número de Expediente</label>
+            <input type="text" class="form-control text-uppercase" id="inputFileNumber">
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-4">
-            <label for="selectCity">Sala Indecopi</label>
-            <select class="custom-select mr-sm-2" id="selectCity"></select>
+        <!-- Fecha de Notificación de Denuncia (Notify Date) -->
+        <div class="form-group col-md-3">
+            <label for="inputNotifyDate">Fecha de Notificación</label>
+            <input type="date" class="form-control" id="inputNotifyDate">
         </div>
-        <div class="form-group col-md-4">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <!-- Fecha de Vencimiento (Due Date) -->
+        <div class="form-group col-md-3">
+            <label for="inputDueDate">Fecha de Vencimiento</label>
+            <input type="date" class="form-control" id="inputDueDate">
         </div>
-    </div>
-    <div class="form-group">
-        <label for="inputAddress2">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        <!-- Fecha de Recepción (Reception Date) -->
+        <div class="form-group col-md-3">
+            <label for="inputReceptionDate">Fecha de Recepción</label>
+            <input type="date" class="form-control" id="inputReceptionDate">
+        </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity">
+        <!-- Agencia de Recepción (Agency) -->
+        <div class="form-group col-md-3">
+            <label for="selectAgency">Agencia de Recepción</label>
+            <select class="custom-select" id="selectAgency"></select>
         </div>
+        <!-- Ciudad Sede (Due Date) -->
+        <div class="form-group col-md-3">
+            <label for="selectCity">Ciudad Sede</label>
+            <select class="custom-select" id="selectCity"></select>
+        </div>
+        <!-- Tipo de Proceso (Process Type) -->
         <div class="form-group col-md-4">
-            <label for="inputState">State</label>
-            <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div class="form-group col-md-2">
-            <label for="inputZip">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
+            <label for="selectProcessType">Tipo de Proceso</label>
+            <select class="custom-select" id="selectProcessType"></select>
         </div>
     </div>
-    <div class="form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-                Check me out
-            </label>
-        </div>
+    <div class="form-row mt-2">
+        <button id="btnGuardar" class="btn btn-primary btn-block">Guardar</button>
     </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
-<!-- Scripts -->
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/js/site.js"></script>
-<script type="text/javascript">
-    $(() => {
+</div>
+@section scripts {
+    <script>
+        $(() => {
 
-        // Law Firm
-        $.ajax({
-            type: 'GET',
-            url: 'Claims/GetLawFirms',
-            success(array) {
-                let options = '';
-                for (let elem of array) {
-                    options += printOptionInSelect(elem.id, elem.description);
+            // Estudio de Abogados (Law Firm)
+            $.ajax({
+                type: 'GET',
+                url: 'GetLawFirms',
+                success(array) {
+                    let options = '';
+                    for (let elem of array) {
+                        options += printOptionInSelect(elem.id, elem.description);
+                    }
+                    $('#selectLawFirm').html(options);
                 }
-                //console.log(array);
-                $('#selectLawFirm').html(options);
-            }
-        });
+            });
 
-        // City
-        $.ajax({
-            type: 'GET',
-            url: 'Claims/GetCities',
-            success(array) {
-                let options = '';
-                for (let elem of array) {
-                    options += printOptionInSelect(elem.id, elem.description);
+            // Fecha de Notificación de Denuncia (Notify Date)
+            $('#inputNotifyDate').val(moment().format('YYYY-MM-DD'));
+
+            // Fecha de Vencimiento (Due Date)
+            $('#inputDueDate').val(moment().format('YYYY-MM-DD'));
+
+            // Agencia de Recepción (Agency)
+            $.ajax({
+                type: 'GET',
+                url: 'GetAgencies',
+                success(array) {
+                    let options = '';
+                    for (let elem of array) {
+                        options += printOptionInSelect(elem.id, elem.description);
+                    }
+                    $('#selectAgency').html(options);
                 }
-                //console.log(array);
-                $('#selectCity').html(options);
-            }
-        });
+            });
 
-    })
-</script>
+            // Ciudad Sede (City)
+            $.ajax({
+                type: 'GET',
+                url: 'GetCities',
+                success(array) {
+                    let options = '';
+                    for (let elem of array) {
+                        options += printOptionInSelect(elem.id, elem.description);
+                    }
+                    $('#selectCity').html(options);
+                }
+            });
+
+            // Tipo de Proceso (Process Type)
+            $.ajax({
+                type: 'GET',
+                url: 'GetProcessTypes',
+                success(array) {
+                    let options = '';
+                    for (let elem of array) {
+                        options += printOptionInSelect(elem.id, elem.description);
+                    }
+                    $('#selectProcessType').html(options);
+                }
+            });
+
+            // Guardar
+            $('#btnGuardar').on('click', () => {
+                console.log('gubiarpa clicked!')
+            });
+
+        })
+    </script>
+}
