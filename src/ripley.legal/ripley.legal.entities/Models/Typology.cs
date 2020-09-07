@@ -5,8 +5,7 @@ using System.Text;
 
 namespace ripley.legal.entities.Models
 {
-    public class ClaimerResponse : GuidDescBase
+    public class Typology : GuidDescBase
     {
-        public IGuid DocumentType { get; set; }
     }
 }
