@@ -64,11 +64,13 @@
 @mixin button-outline-variant($color, $color-hover: color-yiq($color), $active-background: $color, $active-border: $color) {
   color: $color;
   border-color: $color;
+    transition: 0.3s;
 
   @include hover() {
     color: $color-hover;
     background-color: $active-background;
     border-color: $active-border;
+    transition: 0.6s;
   }
 
   &:focus,
